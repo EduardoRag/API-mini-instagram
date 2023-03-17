@@ -26,8 +26,11 @@ const validateToken = async (req, res, next) => {
 
         next();
     } catch (error) {
-        console.log(error.message);
-        return res.status(400).json({ mensagem: 'Erro inesperado do servidor' });
+        if (error.message === 'jwt expired') {
+            return res.status(403).json({ mensagem: 'Por favor realize o login' });
+        }
+
+        return res.status(400).json({ mensagem: error.message });
     }
 }
 

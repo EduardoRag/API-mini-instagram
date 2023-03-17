@@ -21,5 +21,8 @@ route.put('/profile', users.updateProfile);
 
 // Posts
 route.post('/posts', posts.newPost);
+route.post('/posts/:postId/like', posts.toLike);
+route.post('/posts/:postId/comment', posts.toComment);
+route.get('/feed', posts.feed);
 
 module.exports = route;
